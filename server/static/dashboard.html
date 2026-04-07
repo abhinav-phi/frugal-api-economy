@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Frugal Architect</title>
+    <link rel="stylesheet" href="/assets/dashboard.css" />
+  </head>
+  <body>
+    <div class="background-orb orb-a"></div>
+    <div class="background-orb orb-b"></div>
+    <div class="background-grid"></div>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">API Economy Simulator</p>
+          <h1>The Frugal Architect</h1>
+        </div>
+
+        <div class="topbar-controls">
+          <label class="field">
+            <span>Task</span>
+            <select id="taskSelector">
+              <option value="1">Easy</option>
+              <option value="2">Medium</option>
+              <option value="3">Hard</option>
+            </select>
+          </label>
+
+          <button id="resetButton" class="primary-button" type="button">
+            Reset Episode
+          </button>
+        </div>
+      </header>
+
+      <section class="hero-card">
+        <div>
+          <p class="hero-label">Active Goal</p>
+          <h2 id="taskTitle">Find Reliance stock price</h2>
+          <p id="taskDescription" class="hero-copy"></p>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-pill">
+            <span>Status</span>
+            <strong id="statusBadge">In Progress</strong>
+          </div>
+          <div class="stat-pill">
+            <span>Episode Return</span>
+            <strong id="episodeReturn">+0.00</strong>
+          </div>
+          <div class="stat-pill">
+            <span>Target</span>
+            <strong id="targetConfidenceLabel">0.40</strong>
+          </div>
+        </div>
+      </section>
+
+      <main class="dashboard-grid">
+        <section class="panel telemetry-panel">
+          <div class="panel-header">
+            <p class="panel-kicker">Telemetry</p>
+            <h3>Wallet and confidence</h3>
+          </div>
+
+          <div id="walletCard" class="wallet-card">
+            <p class="metric-label">Remaining Budget</p>
+            <p id="budgetValue" class="budget-value">$1.00</p>
+            <div class="budget-meta">
+              <span id="budgetPercent">100% available</span>
+              <span id="budgetWarning">Healthy runway</span>
+            </div>
+          </div>
+
+          <div class="confidence-card">
+            <div class="confidence-head">
+              <div>
+                <p class="metric-label">Confidence</p>
+                <p id="confidenceValue" class="confidence-value">0.00</p>
+              </div>
+              <div class="confidence-side">
+                <span>Gate</span>
+                <strong>0.50 VERIFY</strong>
+              </div>
+            </div>
+
+            <div class="progress-track">
+              <div id="confidenceFill" class="progress-fill"></div>
+              <div id="targetMarker" class="target-marker"></div>
+            </div>
+
+            <div class="progress-legend">
+              <span>0.00</span>
+              <span id="targetLegend">Target 0.40</span>
+              <span>1.00</span>
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-card">
+              <span>Step</span>
+              <strong id="stepCount">0</strong>
+            </div>
+            <div class="mini-card">
+              <span>Grader</span>
+              <strong id="graderScore">0.00</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel marketplace-panel">
+          <div class="panel-header">
+            <p class="panel-kicker">Marketplace</p>
+            <h3>Choose the next API move</h3>
+          </div>
+
+          <div id="toolGrid" class="tool-grid"></div>
+        </section>
+
+        <section class="panel log-panel">
+          <div class="panel-header">
+            <p class="panel-kicker">Audit Trail</p>
+            <h3>Episode activity</h3>
+          </div>
+
+          <div id="logList" class="log-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/assets/dashboard.js"></script>
+  </body>
+</html>

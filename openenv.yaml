@@ -1,0 +1,13 @@
+spec_version: 1
+name: frugal_api_economy
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+metadata:
+  description: Cost-aware research environment for training frugal API-using agents.
+  tags:
+    - optimization
+    - finance
+    - cost-aware
+    - reinforcement-learning
