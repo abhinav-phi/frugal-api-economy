@@ -13,6 +13,7 @@ tags:
   - reinforcement-learning
 ---
 
+
 # 🏦 The Frugal Architect: API Economy Simulator
 
 **The Objective:** In real-world SaaS applications, Large Language Models (LLMs) often waste money by over-using expensive tools. This Reinforcement Learning (RL) environment tests if an AI can achieve high confidence on a research task while spending the least amount of money possible.
