@@ -1,11 +1,3 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-#
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree.
-
-"""Core environment logic for the Frugal Api Economy simulator."""
-
 from uuid import uuid4
 
 from openenv.core.env_server.interfaces import Environment
@@ -18,8 +10,6 @@ except ImportError:
 
 
 class FrugalApiEconomyEnvironment(Environment):
-    """Train agents to reach high confidence while minimizing API spend."""
-
     COSTS = {
         "SCRAPE": 0.01,
         "LLM_REASON": 0.05,
@@ -57,10 +47,6 @@ class FrugalApiEconomyEnvironment(Environment):
         },
     }
 
-    # Enable concurrent WebSocket sessions.
-    # Set to True if your environment isolates state between instances.
-    # When True, multiple WebSocket clients can connect simultaneously, each
-    # getting their own environment instance (when using factory mode in app.py).
     SUPPORTS_CONCURRENT_SESSIONS: bool = True
 
     def __init__(self):
@@ -109,7 +95,7 @@ class FrugalApiEconomyEnvironment(Environment):
             },
         )
 
-    def step(  # type: ignore[override]
+    def step(
         self,
         action: FrugalApiEconomyAction,
         timeout_s=None,
