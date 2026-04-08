@@ -95,17 +95,17 @@ def get_model_message(client: OpenAI, budget: float, confidence: float, info: st
 def main() -> None:
     client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
 
-    for task_id in [1, 2, 3]:
-        task_name = f"frugal_task_{task_id}"
-        log_start(task=task_name, env=BENCHMARK, model=MODEL_NAME)
+    with FrugalApiEconomyEnv(base_url=ENV_BASE_URL).sync() as env:
+        for task_id in [1, 2, 3]:
+            task_name = f"frugal_task_{task_id}"
+            log_start(task=task_name, env=BENCHMARK, model=MODEL_NAME)
 
-        rewards: List[float] = []
-        steps_taken = 0
-        score = 0.0
-        success = False
+            rewards: List[float] = []
+            steps_taken = 0
+            score = 0.0
+            success = False
 
-        try:
-            with FrugalApiEconomyEnv(base_url=ENV_BASE_URL).sync() as env:
+            try:
                 result = env.reset(task_id=task_id)
                 done = result.done
 
@@ -143,10 +143,10 @@ def main() -> None:
                 score = result.observation.metadata.get("grader_score", 0.0)
                 score = min(max(score, 0.0), 1.0)
                 success = score >= SUCCESS_SCORE_THRESHOLD
-        except Exception as exc:
-            print(f"[DEBUG] Error running task {task_id}: {exc}", flush=True)
-        finally:
-            log_end(success=success, steps=steps_taken, score=score, rewards=rewards)
+            except Exception as exc:
+                print(f"[DEBUG] Error running task {task_id}: {exc}", flush=True)
+            finally:
+                log_end(success=success, steps=steps_taken, score=score, rewards=rewards)
 
 
 if __name__ == "__main__":
