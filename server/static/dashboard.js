@@ -63,7 +63,7 @@ const state = {
 };
 
 const els = {
-  taskSelector: document.getElementById("taskSelector"),
+  taskSelector: document.getElementById("task-selector"),
   resetButton: document.getElementById("resetButton"),
   taskTitle: document.getElementById("taskTitle"),
   taskDescription: document.getElementById("taskDescription"),
@@ -213,11 +213,12 @@ function updateStatus() {
 }
 
 async function resetEpisode() {
-  const taskId = Number(els.taskSelector.value);
+  const selectedTaskId = els.taskSelector.value;
+  const taskId = parseInt(selectedTaskId, 10);
   const response = await fetch("/reset", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ task_id: taskId }),
+    body: JSON.stringify({ task_id: parseInt(selectedTaskId, 10) }),
   });
   const payload = await response.json();
   const observation = payload.observation;
