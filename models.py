@@ -1,10 +1,3 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-#
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree.
-
-"""Data contracts for the Frugal Api Economy environment."""
 
 from typing import Literal
 
@@ -13,8 +6,6 @@ from pydantic import Field, field_validator
 
 
 class FrugalApiEconomyAction(Action):
-    """One marketplace decision made by the agent."""
-
     tool_name: Literal["SCRAPE", "SEARCH", "LLM_REASON", "VERIFY"] = Field(
         ...,
         description="Marketplace tool to invoke for this step.",
@@ -36,8 +27,6 @@ class FrugalApiEconomyAction(Action):
 
 
 class FrugalApiEconomyObservation(Observation):
-    """Observable state after each action."""
-
     budget_remaining: float = Field(
         default=1.0,
         ge=0.0,
