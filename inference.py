@@ -2,6 +2,7 @@ import os
 import textwrap
 from typing import List, Optional
 
+
 from openai import OpenAI
 
 from client import FrugalApiEconomyEnv
