@@ -2,11 +2,14 @@ import os
 import textwrap
 from typing import List, Optional
 
-
 from openai import OpenAI
 
-from client import FrugalApiEconomyEnv
-from models import FrugalApiEconomyAction
+try:
+    from .client import FrugalApiEconomyEnv
+    from .models import FrugalApiEconomyAction
+except ImportError:
+    from client import FrugalApiEconomyEnv
+    from models import FrugalApiEconomyAction
 
 API_KEY = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
 API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
