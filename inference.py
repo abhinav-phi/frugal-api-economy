@@ -20,7 +20,7 @@ BENCHMARK = "frugal_api_economy"
 MAX_STEPS = 8
 TEMPERATURE = 0.3
 MAX_TOKENS = 50
-SUCCESS_SCORE_THRESHOLD = 1.0
+SUCCESS_SCORE_THRESHOLD = 0.90
 
 SYSTEM_PROMPT = textwrap.dedent(
     """
@@ -143,8 +143,8 @@ def main() -> None:
                         error=None,
                     )
 
-                score = result.observation.metadata.get("grader_score", 0.0)
-                score = min(max(score, 0.0), 1.0)
+                score = result.observation.metadata.get("grader_score", 0.01)
+                score = min(max(score, 0.01), 0.99)
                 success = score >= SUCCESS_SCORE_THRESHOLD
             except Exception as exc:
                 print(f"[DEBUG] Error running task {task_id}: {exc}", flush=True)

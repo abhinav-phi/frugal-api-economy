@@ -187,11 +187,11 @@ class FrugalApiEconomyEnvironment(Environment):
         return self._state
 
     def get_grader_score(self) -> float:
-        if self.confidence >= self.target_confidence:
-            return 1.0
         if self.target_confidence <= 0:
-            return 0.0
-        return round(min(1.0, self.confidence / self.target_confidence), 2)
+            raw_score = 0.01
+        else:
+            raw_score = self.confidence / self.target_confidence
+        return round(max(0.01, min(0.99, raw_score)), 2)
 
     def _build_observation(
         self,
